@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angel Kenneth Reyes — Senior Fullstack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --c1: #FF6B35;
+    --c2: #845EC2;
+    --c3: #00C9A7;
+    --c4: #F9C74F;
+    --bg: #0E0E12;
+    --bg2: #16161D;
+    --bg3: #1E1E28;
+    --text: #F0EEF8;
+    --muted: #8C8AA0;
+    --border: rgba(255,255,255,0.08);
+    --radius: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(14,14,18,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 1.1rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    letter-spacing: -0.03em;
+    background: linear-gradient(90deg, var(--c1), var(--c2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 0.875rem; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 0 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero .container {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 4rem;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  }
+  .blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(90px); opacity: 0.18;
+  }
+  .blob-1 { width: 500px; height: 500px; background: var(--c2); top: -100px; right: -100px; }
+  .blob-2 { width: 400px; height: 400px; background: var(--c1); bottom: 0; left: -80px; }
+  .blob-3 { width: 300px; height: 300px; background: var(--c3); top: 40%; left: 40%; }
+
+  .hero-content { position: relative; z-index: 1; flex: 1; min-width: 0; }
+  .hero-photo {
+    position: relative; z-index: 1;
+    flex-shrink: 0; width: 300px; height: 360px;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    overflow: hidden;
+  }
+  .hero-photo-ring {
+    position: absolute; inset: -2px;
+    border-radius: 26px;
+    background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
+    z-index: -1; opacity: 0.5;
+  }
+  .hero-photo svg { opacity: 0.2; }
+  .hero-photo span {
+    font-size: 0.75rem; color: var(--muted);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--c3); margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 28px; height: 2px; background: var(--c3);
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    font-weight: 800; line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .name-line { display: block; color: var(--text); }
+  .name-accent {
+    display: block;
+    background: linear-gradient(100deg, var(--c1) 0%, var(--c2) 50%, var(--c3) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-desc {
+    font-size: 1.15rem; color: var(--muted); max-width: 520px;
+    line-height: 1.7; margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    padding: 0.8rem 1.8rem; border-radius: 50px;
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    color: #fff; font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-ghost {
+    padding: 0.8rem 1.8rem; border-radius: 50px;
+    border: 1px solid var(--border);
+    color: var(--muted); font-size: 0.9rem;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 0; }
+  .section-header { margin-bottom: 3rem; }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 50px;
+    background: rgba(255,255,255,0.06); color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700; letter-spacing: -0.02em;
+  }
+
+  /* SKILLS */
+  .skills { background: var(--bg2); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .skill-card {
+    background: var(--bg2);
+    padding: 1.8rem 1.5rem;
+    transition: background 0.2s;
+  }
+  .skill-card:hover { background: var(--bg3); }
+  .skill-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  .skill-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 600; margin-bottom: 0.9rem;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-pill {
+    font-size: 0.75rem; padding: 3px 10px; border-radius: 50px;
+    background: rgba(255,255,255,0.06); color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+  .project-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.18); }
+
+  .project-thumb {
+    width: 100%; aspect-ratio: 16/9;
+    background: var(--bg3);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .project-thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .project-card:hover .project-thumb img { transform: scale(1.04); }
+
+  .thumb-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 10px;
+  }
+  .thumb-placeholder svg { opacity: 0.25; }
+  .thumb-placeholder span {
+    font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .project-badge {
+    position: absolute; top: 12px; left: 12px;
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 50px;
+    background: rgba(14,14,18,0.75); backdrop-filter: blur(6px);
+    border: 1px solid var(--border); color: var(--muted);
+  }
+
+  .project-body { padding: 1.4rem 1.5rem 1.6rem; }
+  .project-body h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;
+  }
+  .project-body p { font-size: 0.875rem; color: var(--muted); margin-bottom: 1.2rem; line-height: 1.6; }
+  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag {
+    font-size: 0.72rem; padding: 3px 10px; border-radius: 50px;
+    background: rgba(255,255,255,0.06); color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .project-links {
+    display: flex; gap: 0.75rem; margin-top: 1.2rem; padding-top: 1.1rem;
+    border-top: 1px solid var(--border);
+  }
+  .project-link {
+    font-size: 0.8rem; color: var(--muted); text-decoration: none;
+    display: flex; align-items: center; gap: 5px;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--text); }
+  .project-link svg { opacity: 0.6; }
+
+  /* SCROLL REVEAL */
+  .contact { background: var(--bg2); text-align: center; }
+  .contact-inner { max-width: 560px; margin: 0 auto; }
+  .contact .section-title { margin-bottom: 1rem; }
+  .contact-sub { color: var(--muted); font-size: 1rem; margin-bottom: 2.5rem; }
+  .contact-email {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 600;
+    color: var(--text); text-decoration: none;
+    border-bottom: 2px solid var(--c1); padding-bottom: 4px;
+    transition: color 0.2s;
+  }
+  .contact-email:hover { color: var(--c1); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    background: linear-gradient(90deg, var(--c1), var(--c2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s, transform 0.5s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 1024px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    nav .nav-inner { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .container { padding-left: 1.5rem; padding-right: 1.5rem; }
+    section { padding: 4rem 0; }
+    .hero { padding: 7rem 0 4rem; }
+    .hero .container { flex-direction: column-reverse; gap: 2.5rem; }
+    .hero-photo { width: 160px; height: 190px; border-radius: 16px; }
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">AKR</span>
+    <div class="nav-links">
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Available for work</div>
+      <h1>
+        <span class="name-line">Angel Kenneth</span>
+        <span class="name-line">A. Reyes</span>
+      </h1>
+      <p class="hero-desc">Senior Fullstack Developer crafting fast, scalable, and beautiful web experiences — from API design to pixel-perfect interfaces.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View my work</a>
+        <a href="#contact" class="btn-ghost">Get in touch</a>
+      </div>
+    </div>
+      <div class="hero-photo">
+  <div class="hero-photo-ring"></div>
+  <img src="profile-photo.png" alt="Angel Kenneth A. Reyes" style="width:100%;height:100%;object-fit:cover;border-radius:24px;">
+</div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="container">
+  <div class="section-header reveal">
+    <div class="section-tag">What I do</div>
+    <h2 class="section-title">Skills & stack</h2>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-dot" style="background:#FF6B35;"></div>
+      <h3>Frontend</h3>
+      <div class="skill-pills">
+        <span class="skill-pill">ReactJS</span>
+        <span class="skill-pill">AngularJS</span>
+        <span class="skill-pill">Vue.js</span>
+        <span class="skill-pill">NuxtJS</span>
+        <span class="skill-pill">TypeScript</span>
+        <span class="skill-pill">JavaScript ES6+</span>
+        <span class="skill-pill">HTML5</span>
+        <span class="skill-pill">CSS</span>
+        <span class="skill-pill">Tailwind CSS</span>
+        <span class="skill-pill">SASS/SCSS</span>
+        <span class="skill-pill">jQuery</span>
+        <span class="skill-pill">AJAX</span>
+        <span class="skill-pill">WordPress</span>
+        <span class="skill-pill">Webflow</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-dot" style="background:#845EC2;"></div>
+      <h3>Backend</h3>
+      <div class="skill-pills">
+        <span class="skill-pill">Java</span>
+        <span class="skill-pill">Node.js</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">PHP</span>
+        <span class="skill-pill">Symfony</span>
+        <span class="skill-pill">Laravel</span>
+        <span class="skill-pill">CodeIgniter</span>
+        <span class="skill-pill">RESTful APIs</span>
+        <span class="skill-pill">Twilio</span>
+        <span class="skill-pill">Parser Scripting</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-dot" style="background:#00C9A7;"></div>
+      <h3>Database & Tools</h3>
+      <div class="skill-pills">
+        <span class="skill-pill">PostgreSQL</span>
+        <span class="skill-pill">MySQL</span>
+        <span class="skill-pill">MongoDB</span>
+        <span class="skill-pill">phpMyAdmin</span>
+        <span class="skill-pill">Git</span>
+        <span class="skill-pill">Sourcetree</span>
+        <span class="skill-pill">Postman</span>
+        <span class="skill-pill">JIRA</span>
+        <span class="skill-pill">Confluence</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-dot" style="background:#F9C74F;"></div>
+      <h3>DevOps & Cloud</h3>
+      <div class="skill-pills">
+        <span class="skill-pill">Docker</span>
+        <span class="skill-pill">CI/CD Pipelines</span>
+        <span class="skill-pill">AWS Lambda</span>
+        <span class="skill-pill">EC2</span>
+        <span class="skill-pill">CloudWatch</span>
+        <span class="skill-pill">EventBridge</span>
+        <span class="skill-pill">S3</span>
+        <span class="skill-pill">Google Cloud</span>
+        <span class="skill-pill">Linux</span>
+        <span class="skill-pill">Ubuntu Server</span>
+        <span class="skill-pill">Apache</span>
+        <span class="skill-pill">SSH</span>
+        <span class="skill-pill">PuTTY</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-dot" style="background:#FF6B9D;"></div>
+      <h3>Methodology & SEO</h3>
+      <div class="skill-pills">
+        <span class="skill-pill">Agile</span>
+        <span class="skill-pill">Scrum</span>
+        <span class="skill-pill">Google Analytics</span>
+        <span class="skill-pill">SEO</span>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+  <div class="section-header reveal">
+    <div class="section-tag">Selected work</div>
+    <h2 class="section-title">Projects</h2>
+  </div>
+  <div class="projects-grid" id="projects-grid">
+
+    <!-- Placeholder 1 -->
+    <div class="project-card reveal">
+        <div class="project-thumb">
+        <img src="./entertainment.png" alt="Project Title" style="width:100%;height:100%;object-fit:contain;display:block;"
+        <span class="project-badge">Website</span>
+      </div>
+      <div class="project-body">
+        <h3>GMA Entertainment</h3>
+        <p>GMA Network’s official entertainment portal featuring the latest showbiz and celebrity news, Kapuso stars, teleserye updates, exclusive videos, photos, and digital content from GMA programs.</p>
+        <div class="project-tags">
+          <!-- <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span> -->
+        </div>
+        <div class="project-links">
+        <a href="https://www.gmanetwork.com/entertainment/" class="project-link" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live site
+          </a>
+        
+        </div>
+      </div>
+    </div>
+
+        <!-- Placeholder 1 -->
+    <div class="project-card reveal">
+        <div class="project-thumb">
+        <img src="./news.png" alt="Project Title" style="width:100%;height:100%;object-fit:contain;display:block;"
+        <span class="project-badge">Website</span>
+      </div>
+      <div class="project-body">
+        <h3>GMA News Online</h3>
+        <p>GMA Network’s digital news platform delivering breaking news, public affairs, business, sports, and regional updates from the Philippines and around the world.</p>
+        <div class="project-tags">
+          <!-- <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span> -->
+        </div>
+        <div class="project-links">
+        <a href="https://www.gmanetwork.com/news/" class="project-link" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live site
+          </a>
+        
+        </div>
+      </div>
+    </div>
+
+        <!-- Placeholder 1 -->
+    <div class="project-card reveal">
+        <div class="project-thumb">
+        <img src="./lifestyle.png" alt="Project Title" style="width:100%;height:100%;object-fit:contain;display:block;"
+        <span class="project-badge">Website</span>
+      </div>
+      <div class="project-body">
+        <h3>GMA Lifestyle</h3>
+        <p>A lifestyle portal featuring articles on travel, food, health, fitness, fashion, beauty, relationships, home, and shopping.</p>
+        <div class="project-tags">
+          <!-- <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span> -->
+        </div>
+        <div class="project-links">
+        <a href="https://www.gmanetwork.com/lifestyle/" class="project-link" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live site
+          </a>
+        
+        </div>
+      </div>
+    </div>
+
+        <!-- Placeholder 1 -->
+    <div class="project-card reveal">
+        <div class="project-thumb">
+        <img src="./sparkle.png" alt="Project Title" style="width:100%;height:100%;object-fit:contain;display:block;"
+        <span class="project-badge">Website</span>
+      </div>
+      <div class="project-body">
+        <h3>Sparkle GMA Artist Center</h3>
+        <p>The official home of Sparkle, showcasing GMA artists, celebrity news, talents, events, and exclusive entertainment content.</p>
+        <div class="project-tags">
+          <!-- <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span> -->
+        </div>
+        <div class="project-links">
+        <a href="https://www.gmanetwork.com/sparkle/" class="project-link" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live site
+          </a>
+        
+        </div>
+      </div>
+    </div>
+
+        <!-- Placeholder 1 -->
+    <div class="project-card reveal">
+        <div class="project-thumb">
+        <img src="./music.png" alt="Project Title" style="width:100%;height:100%;object-fit:contain;display:block;"
+        <span class="project-badge">Website</span>
+      </div>
+      <div class="project-body">
+        <h3>GMA Music</h3>
+        <p>GMA Network’s music platform featuring artists, music releases, videos, playlists, and entertainment updates.</p>
+        <div class="project-tags">
+          <!-- <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span> -->
+        </div>
+        <div class="project-links">
+        <a href="https://www.gmanetwork.com/music/" class="project-link" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live site
+          </a>
+        
+        </div>
+      </div>
+    </div>
+
+        <!-- Placeholder 1 -->
+    <div class="project-card reveal">
+        <div class="project-thumb">
+        <img src="./international.png" alt="Project Title" style="width:100%;height:100%;object-fit:contain;display:block;"
+        <span class="project-badge">Website</span>
+      </div>
+      <div class="project-body">
+        <h3>GMA International</h3>
+        <p>Provides Filipinos abroad access to GMA programs, channels, and services worldwide.</p>
+        <div class="project-tags">
+          <!-- <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span> -->
+        </div>
+        <div class="project-links">
+        <a href="https://www.gmanetwork.com/international/" class="project-link" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live site
+          </a>
+        
+        </div>
+      </div>
+    </div>
+
+        <!-- Placeholder 1 -->
+    <div class="project-card reveal">
+        <div class="project-thumb">
+        <img src="./kf.png" alt="Project Title" style="width:100%;height:100%;object-fit:contain;display:block;"
+        <span class="project-badge">Website</span>
+      </div>
+      <div class="project-body">
+        <h3>GMA Kapuso Foundation</h3>
+        <p>The corporate social responsibility arm of GMA Network focused on disaster relief, education, healthcare, and community development programs.</p>
+        <div class="project-tags">
+          <!-- <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span> -->
+        </div>
+        <div class="project-links">
+        <a href="https://www.gmanetwork.com/kapusofoundation/" class="project-link" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live site
+          </a>
+        
+        </div>
+      </div>
+    </div>
+
+        <!-- Placeholder 1 -->
+    <div class="project-card reveal">
+        <div class="project-thumb">
+        <img src="./gmaplay.png" alt="Project Title" style="width:100%;height:100%;object-fit:contain;display:block;"
+        <span class="project-badge">Website</span>
+      </div>
+      <div class="project-body">
+        <h3>GMA Play</h3>
+        <p>A digital content platform offering on-demand access to selected GMA programs and exclusive media content.</p>
+        <div class="project-tags">
+          <!-- <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span> -->
+        </div>
+        <div class="project-links">
+        <a href="https://www.gmanetwork.com/gmaplay/" class="project-link" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live site
+          </a>
+        
+        </div>
+      </div>
+    </div>
+
+        <!-- Placeholder 1 -->
+    <div class="project-card reveal">
+        <div class="project-thumb">
+        <img src="./gtv.png" alt="Project Title" style="width:100%;height:100%;object-fit:contain;display:block;"
+        <span class="project-badge">Website</span>
+      </div>
+      <div class="project-body">
+        <h3>GTV</h3>
+        <p>GMA Network’s free-to-air channel featuring entertainment, lifestyle, sports, movies, and news programs.</p>
+        <div class="project-tags">
+          <!-- <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span> -->
+        </div>
+        <div class="project-links">
+        <a href="https://www.gmanetwork.com/gtv/" class="project-link" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live site
+          </a>
+        
+        </div>
+      </div>
+    </div>
+
+        <!-- Placeholder 1 -->
+    <div class="project-card reveal">
+        <div class="project-thumb">
+        <img src="./affordabox.png" alt="Project Title" style="width:100%;height:100%;object-fit:contain;display:block;"
+        <span class="project-badge">Website</span>
+      </div>
+      <div class="project-body">
+        <h3>GMA Affordabox</h3>
+        <p>Information hub for GMA’s digital TV receiver that enables free-to-air digital television viewing with enhanced features.</p>
+        <div class="project-tags">
+          <!-- <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span> -->
+        </div>
+        <div class="project-links">
+        <a href="https://www.gmanetwork.com/affordabox/" class="project-link" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live site
+          </a>
+        
+        </div>
+      </div>
+    </div>
+
+        <!-- Placeholder 1 -->
+    <div class="project-card reveal">
+        <div class="project-thumb">
+        <img src="./now.png" alt="Project Title" style="width:100%;height:100%;object-fit:contain;display:block;"
+        <span class="project-badge">Website</span>
+      </div>
+      <div class="project-body">
+        <h3>GMA Now Digital TV Receiver</h3>
+        <p>Product page for GMA Now, a portable digital TV receiver that allows users to watch live GMA channels on mobile devices.</p>
+        <div class="project-tags">
+          <!-- <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span> -->
+        </div>
+        <div class="project-links">
+        <a href="https://www.gmanetwork.com/digital-tv-gma-now/" class="project-link" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live site
+          </a>
+        
+        </div>
+      </div>
+    </div>
+ 
+
+
+  </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+  <div class="contact-inner reveal">
+    <div class="section-tag">Let's work together</div>
+    <h2 class="section-title">Got a project in mind?</h2>
+    <p class="contact-sub">I'm open to freelance opportunities, full-time roles, and collaborations. Drop me a line.</p>
+    <a href="mailto:angelkennethreyes@gmail.com" class="contact-email">
+     angelkennethreyes@gmail.com
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <span class="footer-logo">Angel Kenneth Reyes</span>
+    <span style="font-size:0.8rem;color:var(--muted);">Senior Fullstack Developer · 2025</span>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
